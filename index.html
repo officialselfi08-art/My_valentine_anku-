@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Special Gift</title>
+    <style>
+        body { background: #ffafbd; background: linear-gradient(to right, #ffc3a0, #ffafbd); text-align: center; font-family: 'Arial', sans-serif; overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }
+        .box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 85%; max-width: 400px; z-index: 10; position: relative; }
+        h1 { color: #d63384; font-size: 24px; }
+        .heart-fall { position: absolute; top: -10%; color: red; font-size: 20px; animation: fall linear infinite; z-index: 1; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        button { background: #ff4081; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px; font-size: 16px; transition: 0.3s; }
+        button:hover { background: #e91e63; transform: scale(1.1); }
+        input { padding: 10px; width: 80%; border: 2px solid #ff4081; border-radius: 5px; margin-bottom: 10px; outline: none; }
+        #main-content, #secret-msg { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="lock-screen" class="box">
+        <h2>🔒 Secret Gift</h2>
+        <p>Password dalein:</p>
+        <input type="password" id="passInput" placeholder="Password yahan likhein...">
+        <br>
+        <button onclick="checkPass()">Unlock</button>
+        <p style="font-size: 12px; color: gray;">(Hint: nahi batau)</p>
+    </div>
+
+    <div id="main-content" class="box">
+        <h1>Hi! ❤️</h1>
+        <p>Kya aap mere Valentine banenge?</p>
+        <button onclick="sayYes()">Haan</button>
+        <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">Nahi</button>
+    </div>
+
+    <div id="secret-msg" class="box">
+        <h1>Happy Valentine's Day! 🌹</h1>
+        <p>Aap bahut pyaare hain! ❤️</p>
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function checkPass() {
+            let pass = document.getElementById('passInput').value;
+            if(pass === "anku") {
+                document.getElementById('lock-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else { alert("Galat Password!"); }
+        }
+
+        function moveNo() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            let btn = document.getElementById('noBtn');
